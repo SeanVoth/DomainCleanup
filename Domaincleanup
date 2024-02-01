@@ -1,0 +1,23 @@
+# Specify the path to your text file
+$filePath = "C:\temp\domains.txt"
+
+# Specify the path to the cleanup file
+$cleanupFilePath = "C:\temp\cleanup.txt"
+
+# Read the content of the file
+$fileContent = Get-Content -Path $filePath
+
+# Filter lines that do not end with ".ru" or ".top"
+$filteredContent = $fileContent | Where-Object { $_ -notmatch '\.(ru|top)$' }
+
+# Get the removed lines
+$removedContent = $fileContent | Where-Object { $_ -match '\.(ru|top)$' }
+
+# Overwrite the original file with the cleanup file 
+$filteredContent | Set-Content -Path  $cleanupFilePath
+
+# Save the removed lines to the filtered content
+$removedContent | Set-Content -Path $filePath
+
+Write-Host "Lines ending with .ru or .top have been removed from the file."
+Write-Host "Removed lines have been saved to $cleanupFilePath."
