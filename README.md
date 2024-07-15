@@ -1,5 +1,5 @@
 # Domain Cleanup
-Cleans up a list of domains, removing TLD being blocked 
+This script processes a list of URLs to extract and keep only the top-level domains (TLD) and second-level domains (SLD).
 
 
 <h1>Description</h1>
